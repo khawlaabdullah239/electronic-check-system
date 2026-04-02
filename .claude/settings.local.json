@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(node -e \"const pkg = require\\(''./package.json''\\); console.log\\(''react-router-dom:'', pkg.dependencies?.[''react-router-dom''] || ''NOT FOUND''\\); console.log\\(''lucide-react:'', pkg.dependencies?.[''lucide-react''] || ''NOT FOUND''\\); console.log\\(''@supabase/supabase-js:'', pkg.dependencies?.[''@supabase/supabase-js''] || ''NOT FOUND''\\);\")",
+      "Bash(ls \"C:\\\\Users\\\\GACA-IT\\\\Desktop\\\\GACA Projects\\\\repos\\\\ELECTRONIC CHECK\\\\.claude\\\\worktrees\\\\upbeat-curran\\\\src\\\\components\\\\check\"\" 2>/dev/null || echo \"Directory does not exist \")",
+      "Bash(where gh:*)",
+      "Bash(npx playwright:*)",
+      "Bash(netstat -aon)",
+      "Bash(findstr \":5173\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(netstat -ano)",
+      "Bash(findstr '5173 5174 5175')",
+      "Bash(npm run:*)",
+      "Bash(where chrome:*)",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Read(//c/Program Files \\(x86\\)/Google/Chrome/Application/**)"
+    ]
+  }
+}
