@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
+
+* {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  .no-print, aside, header, nav, footer, button {
+    display: none !important;
+  }
+  /* Force white background everywhere */
+  body, html, div, main, section {
+    background: white !important;
+    background-color: white !important;
+  }
+  body {
+    color: black !important;
+    font-size: 9pt !important;
+    padding: 8mm !important;
+  }
+  * {
+    box-shadow: none !important;
+    border-color: #d1d5db !important;
+  }
+  /* Remove sidebar margin */
+  .ms-64, .md\:ms-64 {
+    margin-inline-start: 0 !important;
+  }
+  /* Side-by-side details + QR for print */
+  .print-content > .flex {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    align-items: center !important;
+  }
+  .print-content .flex-1 {
+    flex: 1 !important;
+  }
+  .print-content .lg\:w-72 {
+    width: 150px !important;
+    flex-shrink: 0 !important;
+    border: none !important;
+    padding: 4px !important;
+    text-align: center !important;
+  }
+  /* Remove min-height and stretching */
+  .print-content, .print-content * {
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+  /* Compact spacing */
+  .p-6, .sm\:p-6 {
+    padding: 8px !important;
+  }
+  .p-4, .sm\:p-4 {
+    padding: 8px !important;
+  }
+  .mb-6, .sm\:mb-6 {
+    margin-bottom: 4px !important;
+  }
+  .mb-4, .sm\:mb-4 {
+    margin-bottom: 4px !important;
+  }
+  .gap-6, .gap-4 {
+    gap: 6px !important;
+  }
+  .py-3, .py-2 {
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+  }
+  .space-y-4 > * + *, .space-y-0 > * + * {
+    margin-top: 0 !important;
+  }
+  .rounded-2xl {
+    border-radius: 6px !important;
+  }
+  /* QR code compact + no double border */
+  canvas {
+    max-width: 100px !important;
+    max-height: 100px !important;
+  }
+  .print-content .inline-block {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .print-content {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    overflow: hidden !important;
+  }
+  /* Prevent page overflow - kill all min-height that forces full page */
+  html, body, div, main {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  .min-h-screen {
+    min-height: 0 !important;
+  }
+  /* Text colors for print */
+  [style*="--text"] {
+    color: black !important;
+  }
+  [style*="--text-muted"] {
+    color: #4b5563 !important;
+  }
+  [style*="--card"] {
+    background-color: white !important;
+  }
+}
+
+/* Theme Variables */
+:root,
+[data-theme="light"] {
+  --bg: #F8FAFC;
+  --card: #FFFFFF;
+  --text: #020617;
+  --text-muted: #64748B;
+  --border: #E2E8F0;
+  --sidebar-bg: #0F172A;
+  --header-bg: #FFFFFF;
+  --input-bg: #FFFFFF;
+}
+
+[data-theme="dark"] {
+  --bg: #0B1120;
+  --card: #131D2F;
+  --text: #F1F5F9;
+  --text-muted: #94A3B8;
+  --border: rgba(255, 255, 255, 0.08);
+  --sidebar-bg: #060C1A;
+  --header-bg: #0F1829;
+  --input-bg: #0F1829;
+  --input-border: rgba(255, 255, 255, 0.12);
+  --accent-glow: rgba(161, 98, 7, 0.15);
+  --card-hover: #182236;
+}
+
+/* Dark mode input styling */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: var(--input-bg) !important;
+  color: var(--text) !important;
+  border-color: var(--input-border, var(--border)) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] select::placeholder {
+  color: #475569 !important;
+}
+
+/* Fix browser autofill background in dark mode */
+[data-theme="dark"] input:-webkit-autofill,
+[data-theme="dark"] input:-webkit-autofill:hover,
+[data-theme="dark"] input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Fix browser autofill background in light mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus {
+  border-color: #A16207 !important;
+  box-shadow: 0 0 0 2px var(--accent-glow) !important;
+}
+
+/* Dark mode button primary */
+[data-theme="dark"] .btn-primary {
+  background: linear-gradient(135deg, #A16207, #CA8A04) !important;
+}
+
+/* Dark mode stat cards subtle glow */
+[data-theme="dark"] .stat-card {
+  border-color: var(--border) !important;
+  background: var(--card) !important;
+}
+
+/* Dark mode table rows */
+[data-theme="dark"] tr:hover {
+  background-color: var(--card-hover) !important;
+}
+
+/* Dark mode - standard Tailwind class overrides */
+[data-theme="dark"] .bg-white {
+  background-color: var(--card) !important;
+}
+
+[data-theme="dark"] .bg-gray-50 {
+  background-color: var(--input-bg) !important;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme="dark"] .hover\:bg-red-50:hover {
+  background-color: rgba(220, 38, 38, 0.15) !important;
+}
+
+[data-theme="dark"] .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+}
+
+[data-theme="dark"] .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+}
+
+[data-theme="dark"] .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+}
+
+[data-theme="dark"] .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+}
+
+[data-theme="dark"] .text-red-600,
+[data-theme="dark"] .text-red-700 {
+  color: #FCA5A5 !important;
+}
+
+[data-theme="dark"] .text-emerald-600 {
+  color: #6EE7B7 !important;
+}
+
+[data-theme="dark"] .text-emerald-700 {
+  color: #6EE7B7 !important;
+}
+
+[data-theme="dark"] .text-blue-600 {
+  color: #93C5FD !important;
+}
+
+[data-theme="dark"] .text-amber-600 {
+  color: #FCD34D !important;
+}
+
+[data-theme="dark"] .border-emerald-200,
+[data-theme="dark"] .border-red-200 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
