@@ -37,7 +37,7 @@ Convert traditional paper checks to electronic checks using QR technology.
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/workteam/electronic-check-system.git
+git clone https://github.com/khawlaabdullah239/electronic-check-system.git
 cd electronic-check-system
 npm install
 ```
